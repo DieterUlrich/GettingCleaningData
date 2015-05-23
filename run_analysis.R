@@ -35,10 +35,10 @@ train <- cbind(s_train, y_train, x_train)
 totalData <- rbind(test, train)
 
 ## select only the columns with "mean" or "std" in it, plus subject and activity
-totalData2 <- cbind(totalData[,1:2],totalData[,grep("mean",features$V2, value=TRUE)], totalData[,grep("std", features$V2, value=TRUE)])
+totalData <- cbind(totalData[,1:2],totalData[,grep("mean",features$V2, value=TRUE)], totalData[,grep("std", features$V2, value=TRUE)])
 
 ## create a new column with the acitivtiynames and add it to the table totalData
-Act <- mapvalues(as.vector(totalData2[,2]), 1:6, as.vector(labels[,2]))
+Act <- mapvalues(as.vector(totalData[,2]), 1:6, as.vector(labels[,2]))
 activityName <- matrix(Act, length(Act),1)
 totalData <- cbind(totalData2, activityName)
 
